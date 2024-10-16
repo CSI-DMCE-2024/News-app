@@ -1,0 +1,23 @@
+.footer {
+    background-color: #c59511;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #007bff; /* Bootstrap primary color */
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
