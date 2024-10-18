@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,9 @@ import com.example.news.NewsModel;
 import com.example.news.R;
 import com.example.news.adapters.NavbarAdapter;
 import com.example.news.adapters.NewsAdapter;
+import com.example.news.utils.Constants;
+import com.facebook.shimmer.Shimmer;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -44,6 +48,8 @@ public class HomeFragment extends Fragment implements NavbarAdapter.OnCategoryCl
     ArrayList<String> navArrayList = new ArrayList<>();
     ArrayList<NewsModel.Articles> newsArrayList = new ArrayList<>();
 
+    ScrollView main;
+    ShimmerFrameLayout shimmerFrameLayout;
     ImageView imgOfNews1;
     TextView titleOfNews1, nameOfNews1, timeAgoOfNews1, newsStatus;
 
@@ -57,6 +63,8 @@ public class HomeFragment extends Fragment implements NavbarAdapter.OnCategoryCl
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        main = view.findViewById(R.id.main_cell);
+        shimmerFrameLayout = view.findViewById(R.id.shimmer_layout);
         imgOfNews1 = view.findViewById(R.id.imgOfNews1);
         titleOfNews1 = view.findViewById(R.id.titleOfNews1);
         nameOfNews1 = view.findViewById(R.id.nameOfNews1);
@@ -83,7 +91,7 @@ public class HomeFragment extends Fragment implements NavbarAdapter.OnCategoryCl
 
     public void getNews(String category) {
         // String sources = "the-times-of-india,hindustan-times,india-today,the-hindu,ndtv-news,the-indian-express";
-        String API_KEY = "YOUR_API_KEY";
+        String API_KEY = Constants.API_KEY;
         String BASE_URL = "https://gnews.io/api/v4/";
         String country = "in";
 
@@ -95,12 +103,17 @@ public class HomeFragment extends Fragment implements NavbarAdapter.OnCategoryCl
         newsArrayList.clear();
         NewsApi newsApi = retrofit.create(NewsApi.class);
         Call<NewsModel> call = newsApi.getNewsByCategory(API_KEY, category, country);
-
+        navRV.setVisibility(View.INVISIBLE);
+        main.setVisibility(View.INVISIBLE);
+        shimmerFrameLayout.setVisibility(View.VISIBLE);
         Log.d("HomeFragment", "Request URL: " + call.request().url().toString());
 
         call.enqueue(new Callback<NewsModel>() {
             @Override
             public void onResponse(Call<NewsModel> call, Response<NewsModel> response) {
+                navRV.setVisibility(View.VISIBLE);
+                main.setVisibility(View.VISIBLE);
+                shimmerFrameLayout.setVisibility(View.GONE);
                 if (response.isSuccessful() && response.body() != null) {
                     List<NewsModel.Articles> allArticles = response.body().getArticles();
 
@@ -120,6 +133,9 @@ public class HomeFragment extends Fragment implements NavbarAdapter.OnCategoryCl
 
             @Override
             public void onFailure(@NonNull Call<NewsModel> call, Throwable t) {
+                navRV.setVisibility(View.VISIBLE);
+                main.setVisibility(View.VISIBLE);
+                shimmerFrameLayout.setVisibility(View.GONE);
                 Toast.makeText(getContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

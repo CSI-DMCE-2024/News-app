@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="themeColor">#279E9A</color>
     <color name="navColor">#706F6F</color>
+    <color name="shimmerColor">#C2C2C2</color>
 </resources>

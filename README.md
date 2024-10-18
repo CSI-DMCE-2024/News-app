@@ -31,7 +31,7 @@ The **News App** is an Android application built with Java and XML that allows u
 
 3. **Set up API Key**:
     - Sign up on [gnews.io](https://gnews.io) and get your API key.
-    - Add Your API key to your project in `fragments/HomeFragment.java` line 86 and `fragments/SearchFragment.java` line 75 file.
+    - Add Your API key to your project in `utils/Constants.java`.
 
 4. **Build and Run the app**:
     - Connect your Android device or start an emulator.
