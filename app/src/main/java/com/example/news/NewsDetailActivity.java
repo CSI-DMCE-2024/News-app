@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowInsetsController;
 import android.widget.Button;
@@ -96,6 +97,7 @@ public class NewsDetailActivity extends AppCompatActivity {
         });
         shareNews.setOnClickListener(v -> {
             Glide.with(getApplicationContext()).load(R.drawable.send_clicked).into(shareNews);
+            shareNews(urlToWeb);
         });
 
     }
@@ -103,6 +105,14 @@ public class NewsDetailActivity extends AppCompatActivity {
     private void addNewsToLikeSection(String imgUrl, String source, String title, String timeAgo, String urlToWeb, String content) {
         db.insertLikedNews(imgUrl, source, title, timeAgo, urlToWeb, content);
         Toast.makeText(this, "Added to favourites section", Toast.LENGTH_SHORT).show();
+    }
+
+    private void shareNews(String newsUrl){
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Check out this news!");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, newsUrl);
+        startActivity(Intent.createChooser(shareIntent, "Share on"));
     }
 
     @Override
