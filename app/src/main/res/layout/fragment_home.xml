@@ -1,197 +1,243 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
-<!--        <LinearLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content">-->
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginRight="35sp"-->
-<!--                android:text="General"-->
-<!--                android:textColor="@color/themeColor"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textStyle="bold"/>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/navRV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20sp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="2"
+        tools:listitem="@layout/nav_items_layout" />
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Politics"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textColor="#706F6F"-->
-<!--                android:textStyle="bold"-->
-<!--                android:layout_marginRight="35sp"/>-->
+    <ScrollView
+        android:id="@+id/main_cell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navRV">
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Business"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textColor="#706F6F"-->
-<!--                android:textStyle="bold"-->
-<!--                android:layout_marginRight="35sp"/>-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Entertainment"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textColor="#706F6F"-->
-<!--                android:textStyle="bold"-->
-<!--                android:layout_marginRight="35sp" />-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Sports"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textColor="#706F6F"-->
-<!--                android:textStyle="bold"-->
-<!--                android:layout_marginRight="35sp"/>-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Science"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textColor="#706F6F"-->
-<!--                android:textStyle="bold"-->
-<!--                android:layout_marginRight="35sp"/>-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Health"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textColor="#706F6F"-->
-<!--                android:textStyle="bold"-->
-<!--                android:layout_marginRight="35sp"/>-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Technology"-->
-<!--                android:textSize="20sp"-->
-<!--                android:textColor="#706F6F"-->
-<!--                android:textStyle="bold"-->
-<!--                android:layout_marginRight="35sp"/>-->
-<!--        </LinearLayout>-->
-
-
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/navRV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20sp"/>
-
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none">
-                <LinearLayout
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/imgNews1"
+                android:layout_width="match_parent"
+                android:layout_height="215sp"
+                app:cardCornerRadius="20sp">
+
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent">
 
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/imgNews1"
-                            android:layout_width="match_parent"
-                            android:layout_height="215sp"
-                            app:cardCornerRadius="20sp">
+                    <!-- Background Image -->
+                    <ImageView
+                        android:id="@+id/imgOfNews1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/news_placeholder_img" />
 
-                                <FrameLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent">
+                    <!-- Black Overlay -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#80000000" /> <!-- 50% opaque black -->
 
-                                        <!-- Background Image -->
-                                        <ImageView
-                                            android:id="@+id/imgOfNews1"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:src="@drawable/news_placeholder_img"
-                                            android:scaleType="centerCrop" />
-
-                                        <!-- Black Overlay -->
-                                        <View
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:background="#80000000" /> <!-- 50% opaque black -->
-
-                                        <RelativeLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:orientation="vertical"
-                                            android:padding="20sp">
-
-                                                <TextView
-                                                    android:id="@+id/titleOfNews1"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_above="@id/detailsRelativeLayout"
-                                                    android:layout_gravity="bottom"
-                                                    android:layout_marginBottom="10sp"
-                                                    android:lines="2"
-                                                    android:lineSpacingExtra="5sp"
-                                                    android:text=""
-                                                    android:textColor="@color/white"
-                                                    android:textSize="18sp"
-                                                    android:fontFamily="sans-serif-medium"/>
-
-                                                <RelativeLayout
-                                                    android:id="@+id/detailsRelativeLayout"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="wrap_content"
-                                                    android:layout_alignParentBottom="true">
-
-                                                        <TextView
-                                                            android:id="@+id/nameOfNews1"
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:text=""
-                                                            android:textSize="13sp"
-                                                            android:textColor="@color/white"/>
-
-                                                        <TextView
-                                                            android:id="@+id/timeAgoOfNews1"
-                                                            android:layout_width="wrap_content"
-                                                            android:layout_height="wrap_content"
-                                                            android:layout_alignParentEnd="true"
-                                                            android:drawablePadding="3sp"
-                                                            android:text=""
-                                                            android:textSize="13sp"
-                                                            android:textColor="@color/white"
-                                                            app:drawableLeftCompat="@drawable/hours_ago_icon"
-                                                            app:drawableTint="@color/white"
-                                                            android:visibility="invisible"/>
-                                                </RelativeLayout>
-
-                                        </RelativeLayout>
-                                </FrameLayout>
-                        </androidx.cardview.widget.CardView>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="20sp">
 
                         <TextView
-                            android:id="@+id/newsStatus"
+                            android:id="@+id/titleOfNews1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Top Headlines"
-                            android:textColor="@color/black"
-                            android:textSize="30sp"
-                            android:textStyle="bold"
-                            android:layout_marginVertical="20sp"/>
+                            android:layout_above="@id/detailsRelativeLayout"
+                            android:layout_gravity="bottom"
+                            android:layout_marginBottom="10sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:lineSpacingExtra="5sp"
+                            android:lines="2"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textSize="18sp" />
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/newsRV"
+                        <RelativeLayout
+                            android:id="@+id/detailsRelativeLayout"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
-                </LinearLayout>
-        </ScrollView>
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true">
+
+                            <TextView
+                                android:id="@+id/nameOfNews1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="13sp" />
+
+                            <TextView
+                                android:id="@+id/timeAgoOfNews1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:drawablePadding="3sp"
+                                android:text=""
+                                android:textColor="@color/white"
+                                android:textSize="13sp"
+                                android:visibility="invisible"
+                                app:drawableLeftCompat="@drawable/hours_ago_icon"
+                                app:drawableTint="@color/white" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </FrameLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/newsStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20sp"
+                android:text="Top Headlines"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/newsRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </ScrollView>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/v1"
+                android:layout_width="60sp"
+                android:layout_height="26sp"
+                android:background="@color/shimmerColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/v2"
+                android:layout_width="100sp"
+                android:layout_height="26sp"
+                android:layout_marginStart="30dp"
+                android:background="@color/shimmerColor"
+                app:layout_constraintStart_toEndOf="@+id/v1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/v3"
+                android:layout_width="80sp"
+                android:layout_height="26sp"
+                android:layout_marginStart="30dp"
+                android:background="@color/shimmerColor"
+                app:layout_constraintStart_toEndOf="@+id/v2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/v4"
+                android:layout_width="90sp"
+                android:layout_height="26sp"
+                android:layout_marginStart="30dp"
+                android:background="@color/shimmerColor"
+                app:layout_constraintStart_toEndOf="@+id/v3"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
+            <View
+                android:id="@+id/v5"
+                android:layout_width="match_parent"
+                android:layout_height="210sp"
+                android:layout_marginTop="10dp"
+                android:background="@color/shimmerColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v1" />
 
-</LinearLayout>
+
+            <View
+                android:id="@+id/v6"
+                android:layout_width="200sp"
+                android:layout_height="45sp"
+                android:layout_marginTop="20dp"
+                android:background="@color/shimmerColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v5" />
+
+
+            <View
+                android:id="@+id/v7"
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                android:layout_marginTop="20dp"
+                android:background="@color/shimmerColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v6" />
+
+            <View
+                android:id="@+id/v8"
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                android:layout_marginTop="20dp"
+                android:background="@color/shimmerColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v7" />
+
+            <View
+                android:id="@+id/v9"
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                android:layout_marginTop="20dp"
+                android:background="@color/shimmerColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v8" />
+
+
+            <View
+                android:id="@+id/v10"
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                android:layout_marginTop="20dp"
+                android:background="@color/shimmerColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v9" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

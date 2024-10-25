@@ -20,6 +20,8 @@ import com.example.news.NewsApi;
 import com.example.news.NewsModel;
 import com.example.news.R;
 import com.example.news.adapters.NewsAdapter;
+import com.example.news.utils.Constants;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,8 @@ public class SearchFragment extends Fragment {
     ArrayList<NewsModel.Articles> newsArrayList = new ArrayList<>();
     EditText searchNews;
     TextView showResults;
+    ShimmerFrameLayout shimmerFrameLayout;
+
 
     public SearchFragment() {
         // Required empty public constructor
@@ -48,6 +52,7 @@ public class SearchFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
+        shimmerFrameLayout = view.findViewById(R.id.shimmer_layout);
         searchNews = view.findViewById(R.id.searchNews);
         watchLaterRV = view.findViewById(R.id.watchLaterRV);
         showResults = view.findViewById(R.id.showResults);
@@ -72,7 +77,7 @@ public class SearchFragment extends Fragment {
 
     private void searchNewsByWords() {
         String keywords = searchNews.getText().toString();
-        String API_KEY = "YOUR_API_KEY";
+        String API_KEY = Constants.API_KEY;
         String BASE_URL = "https://gnews.io/api/v4/";
         String country = "in";
 
@@ -84,10 +89,13 @@ public class SearchFragment extends Fragment {
         newsArrayList.clear();
         NewsApi newsApi = retrofit.create(NewsApi.class);
         Call<NewsModel> call = newsApi.getNewsByKeywords(API_KEY, keywords, country);
-
+        watchLaterRV.setVisibility(View.INVISIBLE);
+        shimmerFrameLayout.setVisibility(View.VISIBLE);
         call.enqueue(new Callback<NewsModel>() {
             @Override
             public void onResponse(Call<NewsModel> call, Response<NewsModel> response) {
+                watchLaterRV.setVisibility(View.VISIBLE);
+                shimmerFrameLayout.setVisibility(View.GONE);
                 if (response.isSuccessful() && response.body() != null) {
                     List<NewsModel.Articles> allArticles = response.body().getArticles();
 
@@ -107,7 +115,8 @@ public class SearchFragment extends Fragment {
 
             @Override
             public void onFailure(Call<NewsModel> call, Throwable t) {
-
+                watchLaterRV.setVisibility(View.VISIBLE);
+                shimmerFrameLayout.setVisibility(View.GONE);
             }
         });
     }
